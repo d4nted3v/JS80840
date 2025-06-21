@@ -20,7 +20,7 @@ function menu() {
                 crearOferta(ofertasLaborales);
                 break;
             case 3:
-                eliminarOferta();
+                eliminarOferta(ofertasLaborales);
                 break;
             case 4:
                 salir = true;
@@ -48,11 +48,12 @@ function mostrarOfertas() {
         Descripción: ${oferta.descripcion}
         Salario: ${oferta.salario}USD
         -----------*-----------
-`)
+`);
 contador++
     }}else{
-        console.log("No hay ofertas laborales para visualizar")
+        console.log("No hay ofertas laborales para visualizar");
     }
+    alert("Revisa la consola");
 }
 
 function crearOferta(ofertasLaborales){
@@ -84,7 +85,44 @@ function crearOferta(ofertasLaborales){
 
 
 function eliminarOferta(ofertasLaborales){
+if(ofertasLaborales.length > 0){
+    let contador = 1;
+
+    for(let oferta of ofertasLaborales){
+
+        
+        console.log(`
+        Oferta Numero: ${contador}
+        Titulo oferta: ${oferta.titulo}
+        Descripción: ${oferta.descripcion}
+        Salario: ${oferta.salario}USD
+        -----------*-----------
+`);
+contador++
+
+        }}
+    else{
+        alert("No tienes ofertas disponibles. Crea una para comenzar!")
+        menu();
+    }
+
+
+alert("Revisa la consola");
+
+
+let ofertaElegida = parseInt(prompt(`
+    Elige el nùmero de oferta que deseas eliminar
+    `))-1;
+
+while(ofertaElegida < 0 && ofertaElegida > ofertasLaborales.length){
+    ofertaElegida = parseInt(prompt(`
+    La oferta elegida no existe. Elige el nùmero de oferta que deseas eliminar.
+    `))-1;
+    }
+
+
+ofertasLaborales.splice(ofertaElegida, 1);
+alert("Oferta eliminada exitosamente.");
+menu();
 
 }
-
-console.log(ofertasLaborales)
